@@ -55,7 +55,23 @@ public class Alimento
             componenteMay = "Proteínas, carbohidratos y grasas";
         }
     }
-     
+    
+    public float getCarb(){
+        return carbohidratos;
+    }
+    
+    public float getProt(){
+        return proteinas;
+    }
+    
+    public float getGrasas(){
+        return grasas;
+    }
+    
+    public float getCal(){
+        return calorias;
+    }
+    
     public void muestraDatos(){
         
        
