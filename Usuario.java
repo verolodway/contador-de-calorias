@@ -21,6 +21,8 @@ public class Usuario
     private float totalPro;
     //Variable que representa el total de calorías consumidas por el usuario
     private float totalCal;
+    //Variable que representa el alimento con más calorías consumido por el usuario
+    private Alimento AlimMasCal;
 
     /**
      * Constructor de la clase usuario
@@ -39,6 +41,7 @@ public class Usuario
      */
     public void comer(Alimento alimento, float gramos)
     {
+        this.alimento = alimento;
         totalCarb = alimento.getCarb()*(gramos/100) + totalCarb;
         totalGra = alimento.getGrasas()*(gramos/100) + totalGra;
         totalPro = alimento.getProt()*(gramos/100) + totalPro;
@@ -73,17 +76,34 @@ public class Usuario
     }
     
     /**
+     * Método que nos permite saber qué alimentos hemos consumido
+     */
+    public Alimento getAlimento()
+    {
+        return alimento;
+    }
+    
+    /**
      * Método que nos permite comparar los datos entre dos usuarios
      */
     public void comparacion(Usuario segundoUsuario){
         if(totalCal == segundoUsuario.getTotalCal())
             System.out.println("Los dos usuarios han consumido el mismo número de calorías: " + totalCal);
-        else if (getTotalCal() > segundoUsuario.getTotalCal())
+        else if (totalCal > segundoUsuario.getTotalCal())
             System.out.println("El usuario: " + nombre + " ha consumido más calorias que el usuario: " + segundoUsuario.getNombre() + " "
             + "(" + totalCal + " frente a " + segundoUsuario.getTotalCal()+ ")");
         else
             System.out.println("El usuario: " + segundoUsuario.getNombre() + " ha consumido más calorias que el usuario: " + nombre + " "
             + "(" + segundoUsuario.getTotalCal() + " frente a " + totalCal+ ")");
+    }
+    /**
+     * Método que nos permite saber cual es el alimento con más calorías consumido
+     */
+    public void AlimentoMasCalorico(){
+        if(getAlimento().getCal()>getAlimento().getCal()){
+            AlimMasCal = alimento;
+        }
+        System.out.println("El alimento con más calorías consumido por el usuario es: " + AlimMasCal + alimento.getCal() + " calorías por cada 100 gramos.");
     }
     }
 
