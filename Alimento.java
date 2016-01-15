@@ -56,6 +56,10 @@ public class Alimento
         }
     }
     
+    public String getCompMay(){
+        return componenteMay;
+    }
+    
     public float getCarb(){
         return carbohidratos;
     }
@@ -70,6 +74,10 @@ public class Alimento
     
     public float getCal(){
         return calorias;
+    }
+    
+    public String getNombre(){
+        return nombre;
     }
     
     public void muestraDatos(){

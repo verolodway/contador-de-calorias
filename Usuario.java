@@ -1,4 +1,4 @@
-
+import java.util.ArrayList;
 /**
  * Write a description of class Usuario here.
  * 
@@ -10,7 +10,7 @@ public class Usuario
     //Variable que representa el nombre
     private String nombre;
     //Variable que representa el alimento 
-    private Alimento alimento;
+    private ArrayList<Alimento> alimento;
     //Variable que representa los gramos del alimento
     private float gramos;
     //Variable que representa el total de carbohidratos consumidos por el ususario
@@ -22,7 +22,12 @@ public class Usuario
     //Variable que representa el total de calorías consumidas por el usuario
     private float totalCal;
     //Variable que representa el alimento con más calorías consumido por el usuario
-    private Alimento AlimMasCal;
+    private Alimento alimentoMasCalorico;
+    //Varible que representa el numero del alimento
+    private int numAlimento;
+    
+   
+  
 
     /**
      * Constructor de la clase usuario
@@ -34,6 +39,8 @@ public class Usuario
         totalGra = 0;
         totalPro = 0;
         totalCal = 0;
+        alimentoMasCalorico = null;
+        numAlimento = 1;
     }
 
     /**
@@ -41,11 +48,24 @@ public class Usuario
      */
     public void comer(Alimento alimento, float gramos)
     {
-        this.alimento = alimento;
         totalCarb = alimento.getCarb()*(gramos/100) + totalCarb;
         totalGra = alimento.getGrasas()*(gramos/100) + totalGra;
         totalPro = alimento.getProt()*(gramos/100) + totalPro;
         totalCal = alimento.getCal()*(gramos/100)+ totalCal;
+        numAlimento = numAlimento + 1;
+        //Si el alimento que se esta comiendo es mas calorico que
+        //el que teniamos guardado, entonces tenemos que guardar ese alimento como
+        //más calorico. Si no hemos comido ningun alimento entonces el alimento
+        //que nos estamos comiendo es el más calorico
+        if (alimentoMasCalorico != null) {
+            if (alimento.getCal() >= alimentoMasCalorico.getCal()) {
+            alimentoMasCalorico = alimento;
+            }
+        }
+        else {
+            alimentoMasCalorico = alimento;
+        }
+        
     }
 
     /**
@@ -78,7 +98,7 @@ public class Usuario
     /**
      * Método que nos permite saber qué alimentos hemos consumido
      */
-    public Alimento getAlimento()
+    public ArrayList<Alimento> getAlimento()
     {
         return alimento;
     }
@@ -100,10 +120,29 @@ public class Usuario
      * Método que nos permite saber cual es el alimento con más calorías consumido
      */
     public void AlimentoMasCalorico(){
-        if(getAlimento().getCal()>getAlimento().getCal()){
-            AlimMasCal = alimento;
+       if (alimentoMasCalorico == null) {
+            System.out.println("No has consumido ningun alimento");
         }
-        System.out.println("El alimento con más calorías consumido por el usuario es: " + AlimMasCal + alimento.getCal() + " calorías por cada 100 gramos.");
+        else {
+            System.out.println("El alimento mas calorico es: " + alimentoMasCalorico.getNombre() +
+                   "(" + alimentoMasCalorico.getCal() + ")");
+          }
     }
+    
+    /**
+     * Método que le permite al usuario ver la información nutricional  de cualquier alimento que haya comido pasando su posición como parámetro
+     */
+    public void verAlimento(int numAlim)
+    {
+         numAlim = numAlimento;  
+            for (Alimento alim: alimento){
+            System.out.println("Nombre:                                                      " + getNombre());
+            System.out.println("Proteínas por cada 100 gramos:                               " + alimento.getProt());
+            System.out.println("Carbohidratos por cada 100 gramos:                           " + getCarb());
+            System.out.println("Grasas por cada 100 gramos:                                  " + getGrasas());
+            System.out.println("Calorías:                                                    " + getCal());
+            System.out.println("Componente/s mayoritario/s:                                  " + getCompMay());
+        }
     }
-
+}
+   
