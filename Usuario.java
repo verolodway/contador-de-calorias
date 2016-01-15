@@ -160,5 +160,18 @@ public class Usuario
             System.out.println("El alimento : " + alimento + " no ha sido consumido por el usuario.");
         }
     }
+    
+    /**
+     * Método que nos permite conocer los alimentos que ya hemos consumido repetidamente
+     */
+    public void AlimentosRepetidos(){
+        if(comprobacion == true)
+        {
+            System.out.println(alimento.getNombre());
+        }
+        else {
+            System.out.println("No hay alimentos repetidos.");
+        }
+    }
 }
    
