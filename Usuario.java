@@ -23,11 +23,6 @@ public class Usuario
     private float totalCal;
     //Variable que representa el alimento con más calorías consumido por el usuario
     private Alimento alimentoMasCalorico;
-    //Varible que representa el numero del alimento
-    private int numAlimento;
-    
-   
-  
 
     /**
      * Constructor de la clase usuario
@@ -40,19 +35,19 @@ public class Usuario
         totalPro = 0;
         totalCal = 0;
         alimentoMasCalorico = null;
-        numAlimento = 1;
+        alimento = new ArrayList<Alimento>();
+        
     }
 
     /**
      * Método que le permite al usuario comer un alimento
      */
-    public void comer(Alimento alimento, float gramos)
-    {
+    public void comer(ArrayList<Alimento> alimento, float gramos)
+    {        
         totalCarb = alimento.getCarb()*(gramos/100) + totalCarb;
         totalGra = alimento.getGrasas()*(gramos/100) + totalGra;
         totalPro = alimento.getProt()*(gramos/100) + totalPro;
-        totalCal = alimento.getCal()*(gramos/100)+ totalCal;
-        numAlimento = numAlimento + 1;
+        totalCal = alimento.getCal()*(gramos/100)+ totalCal;        
         //Si el alimento que se esta comiendo es mas calorico que
         //el que teniamos guardado, entonces tenemos que guardar ese alimento como
         //más calorico. Si no hemos comido ningun alimento entonces el alimento
@@ -134,14 +129,35 @@ public class Usuario
      */
     public void verAlimento(int numAlim)
     {
-         numAlim = numAlimento;  
+        numAlim = 1 ;
             for (Alimento alim: alimento){
-            System.out.println("Nombre:                                                      " + getNombre());
-            System.out.println("Proteínas por cada 100 gramos:                               " + alimento.getProt());
-            System.out.println("Carbohidratos por cada 100 gramos:                           " + getCarb());
-            System.out.println("Grasas por cada 100 gramos:                                  " + getGrasas());
-            System.out.println("Calorías:                                                    " + getCal());
-            System.out.println("Componente/s mayoritario/s:                                  " + getCompMay());
+            System.out.println("Nombre:                                                      " + alim.getNombre());
+            System.out.println("Proteínas por cada 100 gramos:                               " + alim.getProt());
+            System.out.println("Carbohidratos por cada 100 gramos:                           " + alim.getCarb());
+            System.out.println("Grasas por cada 100 gramos:                                  " + alim.getGrasas());
+            System.out.println("Calorías:                                                    " + alim.getCal());
+            System.out.println("Componente/s mayoritario/s:                                  " + alim.getCompMay());
+            numAlim = numAlim +1;
+        }
+    }
+    
+    /**
+     * Método que le permite al usuario saber si ha comido o no un alimento
+     */
+    public void ComprobarAlimento (Alimento alimento1){
+        boolean comprobacion;
+        if(alimento1.getNombre() = alimento.getNombre())
+        {
+            comprobacion = true;
+        }
+        else{
+            comprobacion = false;
+        }
+        if (comprobacion == true){
+            System.out.println("El alimento :" + alimento + " ya ha sido consumido por el usuario.");
+        }
+        else {
+            System.out.println("El alimento : " + alimento + " no ha sido consumido por el usuario.");
         }
     }
 }

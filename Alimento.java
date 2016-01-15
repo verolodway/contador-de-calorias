@@ -81,8 +81,6 @@ public class Alimento
     }
     
     public void muestraDatos(){
-        
-       
         System.out.println("Nombre:                                                      " + nombre);
         System.out.println("Proteínas por cada 100 gramos:                               " + proteinas );
         System.out.println("Carbohidratos por cada 100 gramos:                           " + carbohidratos);
